@@ -7,7 +7,7 @@ st.title("LARS AI Assistant 🤖")
 st.markdown("Get a detailed intelligence report for your domain and role.")
 
 # Backend API URL
-API_URL = " https://lars-ai-backend-7.onrender.com"  # Update if using Cloudflare/VPS
+API_URL = "https://lars-ai-backend-7.onrender.com"  # Update if using Cloudflare/VPS
 
 # Chat history
 if "history" not in st.session_state:

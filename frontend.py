@@ -2,14 +2,15 @@
 import streamlit as st
 import requests
 
+# Page setup
 st.set_page_config(page_title="LARS AI Assistant", page_icon="🤖")
 st.title("LARS AI Assistant 🤖")
 st.markdown("Get a detailed intelligence report for your domain and role.")
 
 # Backend API URL
-API_URL = "https://lars-ai-backend-7.onrender.com"  # Update if using Cloudflare/VPS
+API_URL = "https://lars-ai-backend-7.onrender.com"  # Deployed backend URL
 
-# Chat history
+# Initialize chat history
 if "history" not in st.session_state:
     st.session_state.history = []
 
@@ -27,6 +28,7 @@ if submitted:
         st.warning("Please enter both your domain and role.")
     else:
         try:
+            # Prepare payload for backend
             payload = {
                 "name": name,
                 "email": email,
@@ -34,9 +36,18 @@ if submitted:
                 "domain": domain,
                 "role": role
             }
-            response = requests.post(API_URL, json=payload)
+
+            # Send request to backend
+            response = requests.post(f"{API_URL}/generate", json=payload)
+
+            # Debug output (optional)
+            st.write("Backend status code:", response.status_code)
+            st.write("Backend raw text:", response.text)
+
+            # Parse JSON response
             data = response.json()
             answer = data.get("output", data.get("error", "No response"))
+
         except Exception as e:
             answer = f"Error contacting backend: {e}"
 

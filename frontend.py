@@ -8,7 +8,7 @@ st.title("LARS AI Assistant 🤖")
 st.markdown("Get a detailed intelligence report for your domain and role.")
 
 # Backend API URL
-API_URL = "http://127.0.0.1:8000/generate"  # Deployed backend URL
+API_URL = "http://127.0.0.1:8000"  # Deployed backend URL
 
 # Initialize chat history
 if "history" not in st.session_state:
